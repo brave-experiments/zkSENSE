@@ -1,18 +1,8 @@
 \section{Related Work}
 Related Work
 
-\subsection{Privacy Implications of Motion Sensor Data}
-On both iOS and Android, the access to motion sensors does not require explicit user permission; the accelerometer and gyroscope can also be accessed from a mobile website via JavaScript. Previous studies have shown that this data could expose sensitive information about a user. In particular, TouchLogger~\cite{Cai:2011:TIK:2028040.2028049}, TapLogger~\cite{xu2012taplogger}, and ACCessory~\cite{owusu2012accessory} can infer user inputs on a touch screen an steal user passwords based on the device acceleration data during touch events. Mehrnezhad et al. demonstrated that similar attacks can also be launched via Javascript~\cite{mehrnezhad2016touchsignatures}. In addition, extensive studies have proven that user activity can be accurately tracked from the motion data~\cite{REYESORTIZ2016754,SANSEGUNDO2018190}. Other researchers have also shown that personal user information, such as gender, age, weight, and height can be leaked from the sensory data~\cite{Malekzadeh:2018:PSD:3195258.3195260,davarci2017age}. Most recently, Zhang et al.~\cite{zhang2019sensorid} revealed that a globally unique device fingerprint can be generated from the motion sensor data. These studies strongly motivate us to design a privacy-preserving CAPTCHA scheme that does not reveal any sensitive sensor data to the server.
+\input{Sections/RelatedWork/motion-sensor.tex}
+\input{Sections/RelatedWork/bot-detection.tex}
+\input{Sections/RelatedWork/ZKP.tex}
 
-\subsection{Bot Detection}
-Bot detection
 
-\subsection{Privacy Preserving and Verifiable Machine Learning}
-Privacy preserving evaluation of machine learning models has become of particular interest given the changes in regulations (maybe cite GDPR) or events increasing the general public awareness on how private data is used to track users (cite something). \owncomment[IQ]{Maybe this could be motivated in the introduction}
-Several approaches are present in current literature. On the one hand, we have Homomorphic Encryption based schemes \cite{Dowlin:2016:CAN:3045390.3045413,mlconfidential,bos2013private}, where the user encrypts the data over which the model has to be evaluated and sends it to the server. Then the server evaluates over the encrypted data and sends back the result to the user. This method is both private and verifiable, as the server never gets to see the plain user data, but is the evaluating the model, and hence is convinced of the validity of the output of the computation. 
-However, such schemes centralise the evaluation of ML models, which can become problematic when a high number of requests are received. \owncomment[IQ]{Read the evaluations on the referenced papers to try and make a point here.}
-Moreover, evaluating ML models over encrypted data gives more restrictions than tha ZK case, as non-linear and non-polynomial functions cannot be computed (limiting like that the application of several models as random forests and forcing an approximation to linear functions in many other such as logistic regression or (D)NN). \owncomment[IQ]{Here would be cool some references and numbers on how this affects accuracy.}
-
-Another approach to offer privacy preserving machine learning is to evaluate the model locally, avoiding data to be sent to the server. However, if, unlike \name, such approach is taken without proving correct evaluation of the model \cite{DBLP:journals/corr/abs-1710-03275,Bilenko:2011:PCP:2020408.2020475,Guha:2011:PPP:1972457.1972475}, verification is lost. In these papers the model is evaluated for targeted advertising, which can be argued that users are interested in evaluating the latter correctly, removing like that the need of verifying the correct evaluation. However, in other cases (such as bot detection) the user's interest might be of faking the evaluation model, and therefore such limits open the gap for user attacks. 
-
-To the best of our knowledge, the only paper that aims at solving this problem with provable machine learning evaluated locally is MoRePriv \cite{Davidson:2014:MMO:2664243.2664266}. However, this paper is outdated in the proofs they use and the models applied to the data. In \name we prove that more complex models can be used without a high impact on running time. 
