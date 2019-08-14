@@ -1,0 +1,77 @@
+import "./max_vector" as max
+import "./min_vector" as min
+import "./average" as average_fn
+import "./standard_deviation" as std_fn
+import "./variance" as variance_fn
+import "./gap_times" as gap
+
+
+def main(private field[70] x_pad_zeros, private field[70] x_pad_avg, field min_position_x, field max_position_x, private field average_x, private field variance_x, private field standard_deviation_x, \
+         private field[70] x_pad_zeros_sec_2,  private field[70] x_pad_avg_sec_2, private field average_x_sec_2, private field variance_x_sec_2, private field standard_deviation_x_sec_2, \
+         private field[70] y_pad_zeros, private field[70] y_pad_avg, field min_position_y, field max_position_y, private field average_y, private field variance_y, private field standard_deviation_y, \
+         private field[70] y_pad_zeros_sec_2,  private field[70] y_pad_avg_sec_2, private field average_y_sec_2, private field variance_y_sec_2, private field standard_deviation_y_sec_2, \
+         private field[70] z_pad_zeros, private field[70] z_pad_avg, field min_position_z, field max_position_z, private field average_z, private field variance_z, private field standard_deviation_z, \
+         private field[70] z_pad_zeros_sec_2,  private field[70] z_pad_avg_sec_2, private field average_z_sec_2, private field variance_z_sec_2, private field standard_deviation_z_sec_2, \
+         private field[70] amplitude_pad_zeros, private field[70] amplitude_pad_avg, field min_position_amplitude, field max_position_amplitude, private field average_amplitude, private field variance_amplitude, private field standard_deviation_amplitude, \
+         private field[70] amplitude_pad_zeros_sec_2,  private field[70] amplitude_pad_avg_sec_2, private field average_amplitude_sec_2, private field variance_amplitude_sec_2, private field standard_deviation_amplitude_sec_2, \
+         private field[70] times, private field gap_x, private field gap_y, private field gap_z, private field gap_amplitude, \
+         field number_entries) -> (field):
+         
+         max(x_pad_zeros, max_position_x) == 1
+         min(x_pad_avg, min_position_x) == 1
+
+        average_fn(x_pad_zeros, average_x, number_entries) == 1
+        variance_fn(variance_x, x_pad_avg, average_x, number_entries) == 1
+        std_fn(standard_deviation_x, variance_x) == 1
+
+        average_fn(x_pad_zeros_sec_2, average_x_sec_2, number_entries) == 1
+        variance_fn(variance_x_sec_2, x_pad_avg_sec_2, average_x_sec_2, number_entries) == 1
+        std_fn(standard_deviation_x_sec_2, variance_x_sec_2) == 1
+
+
+         max(y_pad_zeros, max_position_y) == 1
+         min(y_pad_avg, min_position_y) == 1
+
+         average_fn(y_pad_zeros, average_y, number_entries) == 1
+         variance_fn(variance_y, y_pad_avg, average_y, number_entries) == 1
+         std_fn(standard_deviation_y, variance_y) == 1
+
+         average_fn(y_pad_zeros_sec_2, average_y_sec_2, number_entries) == 1
+         variance_fn(variance_y_sec_2, y_pad_avg_sec_2, average_y_sec_2, number_entries) == 1
+         std_fn(standard_deviation_y_sec_2, variance_y_sec_2) == 1
+
+         max(z_pad_zeros, max_position_z) == 1
+         min(z_pad_avg, min_position_z) == 1
+
+         average_fn(z_pad_zeros, average_z, number_entries) == 1
+         variance_fn(variance_z, z_pad_avg, average_z, number_entries) == 1
+         std_fn(standard_deviation_z, variance_z) == 1
+
+         average_fn(z_pad_zeros_sec_2, average_z_sec_2, number_entries) == 1
+         variance_fn(variance_z_sec_2, z_pad_avg_sec_2, average_z_sec_2, number_entries) == 1
+         std_fn(standard_deviation_z_sec_2, variance_z_sec_2) == 1
+
+         max(amplitude_pad_zeros, max_position_amplitude) == 1
+         min(amplitude_pad_avg, min_position_amplitude) == 1
+
+         average_fn(amplitude_pad_zeros, average_amplitude, number_entries) == 1
+         variance_fn(variance_amplitude, amplitude_pad_avg, average_amplitude, number_entries) == 1
+         std_fn(standard_deviation_amplitude, variance_amplitude) == 1
+         
+         average_fn(amplitude_pad_zeros_sec_2, average_amplitude_sec_2, number_entries) == 1
+         variance_fn(variance_amplitude_sec_2, amplitude_pad_avg_sec_2, average_amplitude_sec_2, number_entries) == 1
+         std_fn(standard_deviation_amplitude_sec_2, variance_amplitude_sec_2) == 1
+
+        field difference_x = times[max_position_x] - times[min_position_x]
+        gap(difference_x, gap_x) == 1
+
+        field difference_y = times[max_position_y] - times[min_position_y]
+        gap(difference_y, gap_y) == 1
+
+        field difference_z = times[max_position_z] - times[min_position_z]
+        gap(difference_z, gap_z) == 1
+
+        field difference_amplitude = times[max_position_amplitude] - times[min_position_amplitude]
+        gap(difference_amplitude, gap_amplitude) == 1
+
+         return 1

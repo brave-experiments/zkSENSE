@@ -1,0 +1,27 @@
+// We implement the proof generation of a pedersen commitment
+import "ecc/babyjubjubParams.code" as context
+import "ecc/edwardsAdd.code" as add
+import "ecc/edwardsScalarMult.code" as multiply
+
+import "utils/pack/unpack256.code" as unpack256
+
+def main(field[2] hash, private field[3] committed_values, private field random, field[10] context) -> (field):
+    field[2] G = [context[4], context[5]]
+
+    field[256] value_0 = unpack256(committed_values[0])
+    field[256] value_1 = unpack256(committed_values[1])
+    field[256] value_2 = unpack256(committed_values[2])
+    field[256] value_random = unpack256(random)
+
+    field[2] comm_value_0 = multiply(value_0, G, context)
+    field[2] comm_value_1 = multiply(value_1, G, context)
+    field[2] comm_value_2 = multiply(value_2, G, context)
+    field[2] comm_value_random = multiply(value_random, G, context)
+
+    field[2] calc_hash = add(add(comm_value_0, comm_value_1, context), add(comm_value_2, comm_value_random, context), context)
+
+    return 1
+
+
+
+
