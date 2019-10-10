@@ -17,3 +17,5 @@ zokrates generate-proof  62.56s user 5.31s system 136% cpu 49.703 total
 On Pixel3: 81.02s
 zokrates generate-proof  144.54s user 7.11s system 187% cpu 1:21.02 total
 ```
+
+*Note: Zokrates has a weird bug that when comparing result with 1 or 0, it always passes the check no matter what the input is. Therefore, I changed the return to 11 or 10 in the `modules/verify_pk_root.code`.*
