@@ -1,0 +1,37 @@
+import "utils/pack/pack128.code" as pack128
+import "./unpack42.code" as unpack42
+import "hashes/sha256/512bitPadded.code" as sha256
+// A function that takes an array of 4 field elements as inputs, unpacks each of them to 128
+// bits (big endian), concatenates them and applies sha256.
+// It then returns an array of two field elements, each representing 128 bits of the result.
+def main(field[4] x, field[4] y, field[4] z) -> (field[2]):
+
+    // A `field` value can only hold 254 bits. sha256 requires 512 bits of input
+    // We use 42 bits to encode each axis output; 128 bits are used to encode a single record with outputs from three axes
+    // More info: https://zokrates.github.io/sha256example.html
+
+    x0 = unpack42(x[0])
+    y0 = unpack42(y[0])
+    z0 = unpack42(z[0])
+
+    x1 = unpack42(x[1])
+    y1 = unpack42(y[1])
+    z1 = unpack42(z[1])
+
+    x2 = unpack42(x[2])
+    y2 = unpack42(y[2])
+    z2 = unpack42(z[2])
+
+    x3 = unpack42(x[3])
+    y3 = unpack42(y[3])
+    z3 = unpack42(z[3])
+
+    field[256] lhs = [0, 0, ...x0, ...y0, ...z0, 0, 0, ...x1, ...y1, ...z1]
+    field[256] rhs = [0, 0, ...x2, ...y2, ...z2, 0, 0, ...x3, ...y3, ...z3]
+    
+    field[256] r = sha256(lhs, rhs) 
+    
+    res0 = pack128(r[..128])
+    res1 = pack128(r[128..])
+
+    return [res0, res1] 
