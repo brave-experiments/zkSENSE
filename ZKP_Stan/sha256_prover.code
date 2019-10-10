@@ -1,4 +1,4 @@
-import "./utils/512bitPacked.code" as sha256packed
+import "./modules/512bitPacked.code" as sha256packed
 
 def main(private field[68] x, private field[68] y, private field[68] z, field[17] h0, field[17] h1) -> (field):
 
