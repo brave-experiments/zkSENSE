@@ -1,0 +1,10 @@
+def main(private field standard_deviation, private field variance) -> (field):
+    // Small example nearing it to the nearest integer
+    
+    field max_positive = 3707115858587375397150016309585643303444808158605481919383003092793333645312 // as working in a finite field, we define negative number as greater than a threshold
+    
+    field sq_std = standard_deviation * standard_deviation
+    field sq_std_1 = (standard_deviation + 1) * (standard_deviation + 1)
+    return if standard_deviation < max_positive && variance < max_positive && sq_std <= variance && sq_std_1 > variance then 11 else 10 fi
+
+    

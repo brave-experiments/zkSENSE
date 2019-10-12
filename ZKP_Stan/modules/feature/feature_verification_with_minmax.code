@@ -1,0 +1,63 @@
+import "./modules/max_vector.code" as max
+import "./modules/min_vector.code" as min
+import "./modules/average.code" as average_fn
+import "./modules/standard_deviation.code" as std_fn
+import "./modules/variance.code" as variance_fn
+
+
+def main(private field[70] x_pad_zeros, field min_position_x, field max_position_x, private field average_x, private field variance_x, private field standard_deviation_x, \
+        private field[70] x_pad_zeros_sec_2, private field average_x_sec_2, private field variance_x_sec_2, private field standard_deviation_x_sec_2, \
+        private field[70] y_pad_zeros, field min_position_y, field max_position_y, private field average_y, private field variance_y, private field standard_deviation_y, \
+        private field[70] y_pad_zeros_sec_2, private field average_y_sec_2, private field variance_y_sec_2, private field standard_deviation_y_sec_2, \
+        private field[70] z_pad_zeros, field min_position_z, field max_position_z, private field average_z, private field variance_z, private field standard_deviation_z, \
+        private field[70] z_pad_zeros_sec_2, private field average_z_sec_2, private field variance_z_sec_2, private field standard_deviation_z_sec_2, \
+        private field[70] amplitude_pad_zeros, field min_position_amplitude, field max_position_amplitude, private field average_amplitude, private field variance_amplitude, private field standard_deviation_amplitude, \
+        private field[70] amplitude_pad_zeros_sec_2, private field average_amplitude_sec_2, private field variance_amplitude_sec_2, private field standard_deviation_amplitude_sec_2, \
+        field number_entries, field number_entries_sec_2) -> (field):
+         
+        max(x_pad_zeros, max_position_x) == 11
+        min(x_pad_zeros, min_position_x, number_entries) == 11
+
+        average_fn(x_pad_zeros, average_x, number_entries) == 11
+        variance_fn(variance_x, x_pad_zeros, average_x, number_entries) == 11
+        std_fn(standard_deviation_x, variance_x) == 11
+
+        average_fn(x_pad_zeros_sec_2, average_x_sec_2, number_entries_sec_2) == 11
+        variance_fn(variance_x_sec_2, x_pad_zeros_sec_2, average_x_sec_2, number_entries_sec_2) == 11
+        std_fn(standard_deviation_x_sec_2, variance_x_sec_2) == 11
+
+        max(y_pad_zeros, max_position_y) == 11
+        min(y_pad_zeros, min_position_y, number_entries) == 11
+
+        average_fn(y_pad_zeros, average_y, number_entries) == 11
+        variance_fn(variance_y, y_pad_zeros, average_y, number_entries) == 11
+        std_fn(standard_deviation_y, variance_y) == 11
+
+        average_fn(y_pad_zeros_sec_2, average_y_sec_2, number_entries_sec_2) == 11
+        variance_fn(variance_y_sec_2, y_pad_zeros_sec_2, average_y_sec_2, number_entries_sec_2) == 11
+        std_fn(standard_deviation_y_sec_2, variance_y_sec_2) == 11
+
+        max(z_pad_zeros, max_position_z) == 11
+        min(z_pad_zeros, min_position_z, number_entries) == 11
+
+        average_fn(z_pad_zeros, average_z, number_entries) == 11
+        variance_fn(variance_z, z_pad_zeros, average_z, number_entries) == 11
+        std_fn(standard_deviation_z, variance_z) == 11
+
+        average_fn(z_pad_zeros_sec_2, average_z_sec_2, number_entries_sec_2) == 11
+        variance_fn(variance_z_sec_2, z_pad_zeros_sec_2, average_z_sec_2, number_entries_sec_2) == 11
+        std_fn(standard_deviation_z_sec_2, variance_z_sec_2) == 11
+
+        max(amplitude_pad_zeros, max_position_amplitude) == 11
+        min(amplitude_pad_zeros, min_position_amplitude, number_entries) == 11
+
+        average_fn(amplitude_pad_zeros, average_amplitude, number_entries) == 11
+        variance_fn(variance_amplitude, amplitude_pad_zeros, average_amplitude, number_entries) == 11
+        std_fn(standard_deviation_amplitude, variance_amplitude) == 11
+        
+        average_fn(amplitude_pad_zeros_sec_2, average_amplitude_sec_2, number_entries_sec_2) == 11
+        variance_fn(variance_amplitude_sec_2, amplitude_pad_zeros_sec_2, average_amplitude_sec_2, number_entries_sec_2) == 11
+        std_fn(standard_deviation_amplitude_sec_2, variance_amplitude_sec_2) == 11
+
+
+        return 11
