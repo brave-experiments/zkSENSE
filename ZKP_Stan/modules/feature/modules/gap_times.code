@@ -1,6 +1,0 @@
-def main(private field difference, private field gap) -> (field):
-    field diff_sqr = (difference * difference)
-    field gap_sqr = (gap * gap)
-
-    diff_sqr == gap_sqr
-    return 11

@@ -1,0 +1,9 @@
+def main(private field[70] x, private field[70] y, private field[70] z, private field[70] amplitude) -> (field):
+    field result = 0
+
+    for field i in 0..69 do
+        result = if amplitude[i] * amplitude[i] <= x[i] * x[i] + y[i] * y[i] + z[i] * z[i] && (amplitude[i] + 1) * (amplitude[i] + 1) > x[i] * x[i] + y[i] * y[i] + z[i] * z[i] then result else result + 1 fi
+    endfor
+
+    result == 0
+    return 11
