@@ -22,8 +22,8 @@ def main(private field[70] x_pad_zeros, field min_position_x, field max_position
         field number_entries, field number_entries_sec_2) -> (field):
 
         // Verify the amplitude values
-        amplitude_fn(x_pad_zeros, y_pad_zeros, z_pad_zeros, amplitude_pad_zeros) == 11
-        amplitude_fn(x_pad_zeros_sec_2, y_pad_zeros_sec_2, z_pad_zeros_sec_2, amplitude_pad_zeros_sec_2) == 11
+        amplitude_fn(x_pad_zeros, y_pad_zeros, z_pad_zeros, amplitude_pad_zeros, number_entries) == 11
+        amplitude_fn(x_pad_zeros_sec_2, y_pad_zeros_sec_2, z_pad_zeros_sec_2, amplitude_pad_zeros_sec_2, number_entries_sec_2) == 11
 
 
         // Verify the correctness of the diff values

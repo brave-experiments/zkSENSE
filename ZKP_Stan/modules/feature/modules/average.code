@@ -4,7 +4,7 @@ def main(private field[70] values, private field average, field number_elements)
         sum = sum + values[i]
     endfor
     
-    field result = if average * number_elements <= sum && (average + 1) * number_elements > sum then 11 else 10 fi
+    field result = if average * number_elements <= sum && (average + 1) * number_elements > sum then 15 else 14 fi
 
-    result == 11
-    return result
+    result == 15
+    return 11

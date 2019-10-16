@@ -7,5 +7,4 @@ def main(private field[70] vector, private field position, field number_elements
     endfor
     
     result * 2 == (number_elements + 69) * (70 - number_elements)
-
     return 11
