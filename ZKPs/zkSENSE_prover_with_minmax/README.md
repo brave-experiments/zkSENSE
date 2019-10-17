@@ -1,5 +1,4 @@
 # zkSENSE Prover with Min & Max
-___
 
 This proof attests:
 

@@ -1,5 +1,4 @@
 # zkSENSE Prover
-___
 
 This proof attests:
 

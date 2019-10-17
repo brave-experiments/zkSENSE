@@ -1,5 +1,4 @@
 # Key Integrity Prover
-___
 
 This proof attests:
 
