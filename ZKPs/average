@@ -1,7 +1,0 @@
-def main(private field[70] values, private field average, field number_elements) -> (field):
-    field sum = 0
-    for field i in 0..70 do
-        sum = sum + values[i]
-    endfor
-    
-    return if average * number_elements <= sum && (average + 1) * number_elements > sum then 1 else 0 fi

@@ -1,0 +1,7 @@
+import "hashes/pedersen/512bit.code" as ped_hash
+import "utils/pack/pack256.code" as pack
+
+def main(private field[512] input, field expected_hash) -> (field):
+    field hash = pack(ped_hash(input))
+	field equal = if hash == expected_hash then 1 else 0 fi
+	return equal

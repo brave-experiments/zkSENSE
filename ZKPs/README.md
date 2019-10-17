@@ -1,25 +1,6 @@
-# Zero Knowledge Proofs (ZKPs)
-This folder includes proofs to calculate the precomputation made to the data before including it in the ML model and a proof of pre image of a pedersen hash.
+# zkSENSE
+---
 
-To compute the running time of proving pre-image of a pedersen hash run the following commands:
+This folder contains the ZKP implementation for both key attestation (`key_integrity_prover`) and ML model attestation (`zkSENSE_prover` and `zkSENSE_prover_with_min_max`).
 
-`zokrates compile -i pedersen_commitment.code`
-
-`cat pedersen_data | zokrates compute-witness`
-
-`zokrates setup`
-
-`time zokrates generate-proof`
-
-To compute the running times of proving the precomputations of the sensor data, run the following: 
-
-`zokrates compile -i proofs_on_input`
-
-`cat data | zokrates compute-witness`
-
-`zokrates setup`
-
-`time zokrates generate-proof`
-
-
-The last file evaluates all the computations (including max and min). To calculate the time of the proof generation without the max/min calculations, comment out (//) the corresponding lines in file proofs_on_input
+Please refer to these folders for more details.

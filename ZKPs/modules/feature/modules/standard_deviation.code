@@ -1,0 +1,15 @@
+def main(private field[70] values, private field std, private field average, private field number_elements, field reference_number) -> (field):
+
+    field max_positive = 3707115858587375397150016309585643303444808158605481919383003092793333645312 // as working in a finite field, we define negative number as greater than a threshold
+
+    field sum = 0
+    for field i in 0..70 do
+        sum = sum + ((values[i] - average) * (values[i] - average))
+    endfor
+
+    sum = sum - average * average * (70 - number_elements)
+
+    field check = if (std < max_positive) && ((std - reference_number) * (std - reference_number) * number_elements <= sum) && ((std - reference_number + 1) * (std - reference_number + 1) * number_elements > sum) then 13 else 12 fi
+    check == 13
+
+    return 11
