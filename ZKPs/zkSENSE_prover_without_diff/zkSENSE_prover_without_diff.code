@@ -1,0 +1,78 @@
+import "../modules/feature/feature_verification_prover_without_diff.code" as feature_verify
+import "../modules/pedersen/pedersen_prover.code" as pedersen_verify
+import "../modules/svm/svm_prover_without_diff.code" as svm_verify
+
+def main( \
+    private field[70] acc_x_pad_zeros, private field acc_average_x, private field acc_standard_deviation_x, \
+    private field[70] acc_x_pad_zeros_sec_2, private field acc_average_x_sec_2, private field acc_standard_deviation_x_sec_2, \
+    private field[70] acc_y_pad_zeros, private field acc_average_y, private field acc_standard_deviation_y, \
+    private field[70] acc_y_pad_zeros_sec_2, private field acc_average_y_sec_2, private field acc_standard_deviation_y_sec_2, \
+    private field[70] acc_z_pad_zeros, private field acc_average_z, private field acc_standard_deviation_z, \
+    private field[70] acc_z_pad_zeros_sec_2, private field acc_average_z_sec_2, private field acc_standard_deviation_z_sec_2, \
+    private field[70] acc_amp_pad_zeros, private field acc_average_amp, private field acc_standard_deviation_amp, \
+    private field[70] acc_amp_pad_zeros_sec_2, private field acc_average_amp_sec_2, private field acc_standard_deviation_amp_sec_2, \
+    field acc_number_entries, field acc_number_entries_sec_2, \
+    private field[70] gyr_x_pad_zeros, private field gyr_average_x, private field gyr_standard_deviation_x, \
+    private field[70] gyr_x_pad_zeros_sec_2, private field gyr_average_x_sec_2, private field gyr_standard_deviation_x_sec_2, \
+    private field[70] gyr_y_pad_zeros, private field gyr_average_y, private field gyr_standard_deviation_y, \
+    private field[70] gyr_y_pad_zeros_sec_2, private field gyr_average_y_sec_2, private field gyr_standard_deviation_y_sec_2, \
+    private field[70] gyr_z_pad_zeros, private field gyr_average_z, private field gyr_standard_deviation_z, \
+    private field[70] gyr_z_pad_zeros_sec_2, private field gyr_average_z_sec_2, private field gyr_standard_deviation_z_sec_2, \
+    private field[70] gyr_amp_pad_zeros, private field gyr_average_amp, private field gyr_standard_deviation_amp, \
+    private field[70] gyr_amp_pad_zeros_sec_2, private field gyr_average_amp_sec_2, private field gyr_standard_deviation_amp_sec_2, \
+    field gyr_number_entries, field gyr_number_entries_sec_2, \
+    field[32] scaler_stds, field[32] feature_weights, private field[32] component1, private field[32] component2, field sum_component1, field sum_component2, \
+    field[48] pedersen_hashes \
+) -> (field):
+
+    // Verify that pedersen hashes match the sensor data
+    pedersen_verify(acc_x_pad_zeros, acc_y_pad_zeros, acc_z_pad_zeros, pedersen_hashes[..12]) == 11
+    pedersen_verify(acc_x_pad_zeros_sec_2, acc_y_pad_zeros_sec_2, acc_z_pad_zeros_sec_2, pedersen_hashes[12..24]) == 11
+    pedersen_verify(gyr_x_pad_zeros, gyr_y_pad_zeros, gyr_z_pad_zeros, pedersen_hashes[24..36]) == 11
+    pedersen_verify(gyr_x_pad_zeros_sec_2, gyr_y_pad_zeros_sec_2, gyr_z_pad_zeros_sec_2, pedersen_hashes[36..48]) == 11
+    
+    // Verify that all the features are correctly calculated
+
+    field reference_number = 100000000
+    
+    feature_verify( \
+        acc_x_pad_zeros, acc_average_x, acc_standard_deviation_x, \
+        acc_x_pad_zeros_sec_2, acc_average_x_sec_2, acc_standard_deviation_x_sec_2, \
+        acc_y_pad_zeros, acc_average_y, acc_standard_deviation_y, \
+        acc_y_pad_zeros_sec_2, acc_average_y_sec_2, acc_standard_deviation_y_sec_2, \
+        acc_z_pad_zeros, acc_average_z, acc_standard_deviation_z, \
+        acc_z_pad_zeros_sec_2, acc_average_z_sec_2, acc_standard_deviation_z_sec_2, \
+        acc_amp_pad_zeros, acc_average_amp, acc_standard_deviation_amp, \
+        acc_amp_pad_zeros_sec_2, acc_average_amp_sec_2, acc_standard_deviation_amp_sec_2, \
+        acc_number_entries, acc_number_entries_sec_2, reference_number \
+    ) == 11
+
+    feature_verify( \
+        gyr_x_pad_zeros, gyr_average_x, gyr_standard_deviation_x, \
+        gyr_x_pad_zeros_sec_2, gyr_average_x_sec_2, gyr_standard_deviation_x_sec_2, \
+        gyr_y_pad_zeros, gyr_average_y, gyr_standard_deviation_y, \
+        gyr_y_pad_zeros_sec_2, gyr_average_y_sec_2, gyr_standard_deviation_y_sec_2, \
+        gyr_z_pad_zeros, gyr_average_z, gyr_standard_deviation_z, \
+        gyr_z_pad_zeros_sec_2, gyr_average_z_sec_2, gyr_standard_deviation_z_sec_2, \
+        gyr_amp_pad_zeros, gyr_average_amp, gyr_standard_deviation_amp, \
+        gyr_amp_pad_zeros_sec_2, gyr_average_amp_sec_2, gyr_standard_deviation_amp_sec_2, \
+        gyr_number_entries, gyr_number_entries_sec_2, reference_number \
+    ) == 11
+    
+
+    // Verify that correct SVM components are calculated
+
+    field[32] features = [ \
+        acc_average_x, acc_average_y, acc_average_z, acc_average_amp, \
+        acc_average_x_sec_2, acc_average_y_sec_2, acc_average_z_sec_2, acc_average_amp_sec_2, \
+        acc_standard_deviation_x, acc_standard_deviation_y, acc_standard_deviation_z, acc_standard_deviation_amp, \
+        acc_standard_deviation_x_sec_2, acc_standard_deviation_y_sec_2, acc_standard_deviation_z_sec_2, acc_standard_deviation_amp_sec_2, \
+        gyr_average_x, gyr_average_y, gyr_average_z, gyr_average_amp, \
+        gyr_average_x_sec_2, gyr_average_y_sec_2, gyr_average_z_sec_2, gyr_average_amp_sec_2, \
+        gyr_standard_deviation_x, gyr_standard_deviation_y, gyr_standard_deviation_z, gyr_standard_deviation_amp, \
+        gyr_standard_deviation_x_sec_2, gyr_standard_deviation_y_sec_2, gyr_standard_deviation_z_sec_2, gyr_standard_deviation_amp_sec_2 \
+    ]
+
+    svm_verify(features, scaler_stds, feature_weights, component1, component2, sum_component1, sum_component2) == 11
+
+    return 11

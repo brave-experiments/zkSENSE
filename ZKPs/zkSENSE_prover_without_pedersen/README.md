@@ -48,5 +48,5 @@ zokrates generate-proof: 115.51s
 167.03s user 21.14s system 162% cpu 1:55.51 total
 
 ---
-On Pixel3 (Android NDK): 217.305s
+On Pixel3 (Android NDK): 207.602s
 ```

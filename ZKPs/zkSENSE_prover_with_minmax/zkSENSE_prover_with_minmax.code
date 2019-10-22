@@ -1,4 +1,4 @@
-import "../modules/feature/feature_verification_with_minmax_prover.code" as feature_verify
+import "../modules/feature/feature_verification_prover_with_minmax.code" as feature_verify
 import "../modules/pedersen/pedersen_prover.code" as pedersen_verify
 import "../modules/svm/svm_with_minmax_prover.code" as svm_verify
 

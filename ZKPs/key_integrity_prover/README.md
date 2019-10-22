@@ -5,9 +5,6 @@ This proof attests:
  - The attestation public key is signed by the root key of the trusted hardware
  - The root key of the trusted hardware is signed by the correct vendor key
  
-Having these components, correct SVM result can be reconstructed from the app. 
-
-*This proof does not use Min/Max as features.*
 
 To generate the proof:
 ```sh

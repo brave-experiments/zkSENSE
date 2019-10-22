@@ -13,11 +13,11 @@ Having these SVM components, correct SVM result can be reconstructed from the ap
 To generate the proof:
 ```sh
 # Compile the proof using zokrates
-$ zokrates compile -i zkSENSE_with_minmax_prover.code
+$ zokrates compile -i zkSENSE_prover_with_minmax.code
 
 # Compute witness 
 # The data is valid if ~out_0 == 11
-$ cat zkSENSE_with_minmax_prover_data.txt | zokrates compute-witness
+$ cat zkSENSE_prover_with_minmax_data.txt | zokrates compute-witness
 
 # Trusted setup
 $ zokrates setup
