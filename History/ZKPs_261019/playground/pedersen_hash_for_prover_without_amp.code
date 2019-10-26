@@ -1,6 +1,3 @@
-import "../modules/feature/feature_verification_prover.code" as feature_verify
-import "../modules/pedersen/pedersen_prover.code" as pedersen_verify
-import "../modules/svm/svm_prover.code" as svm_verify
 import "../modules/pedersen/compute_full_pedersen.code" as compute_pedersen
 
 def main( \
@@ -30,7 +27,7 @@ def main( \
     private field[70] gyr_z_pad_zeros_diff, private field gyr_average_z_diff, private field gyr_standard_deviation_z_diff, \
     private field[70] gyr_z_pad_zeros_sec_2_diff, private field gyr_average_z_sec_2_diff, private field gyr_standard_deviation_z_sec_2_diff, \
     field gyr_number_entries, field gyr_number_entries_sec_2, \
-    field[48] scaler_stds, field[48] feature_weights, private field[48] component1, private field[48] component2, field sum_component1, field sum_component2 \
+    field[48] weight_over_stds, field svm_component \
 ) -> (field[48]):
 
     return compute_pedersen( \

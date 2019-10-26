@@ -4,11 +4,11 @@ This proof attests:
 
  - sensor outputs match Pedersen hash
  - all features are correctly calculated 
- - SVM components are correct calculated
+ - the SVM component is correct calculated
  
-Having these SVM components, correct SVM result can be reconstructed from the app. 
+Having the SVM component, correct SVM result can be reconstructed from the app. 
 
-*This proof does not use Min/Max as features.*
+*This proof does not use Amplitude/Min/Max as features.*
 
 To generate the proof:
 ```sh
@@ -26,29 +26,21 @@ $ zokrates setup
 $ zokrates generate-proof
 ```
 
-
 Performance on my devices:
 
 ```
-Number of constraints: 1546406
-Has generated 1348326 points
-
-Time consumption:
----
-On Mac: 214.35s
-
-zokrates compute-witness: 113.54s
-86.86s user 3.13s system 79% cpu 1:53.54 total
-
-zokrates generate-proof: 100.81s
-135.55s user 8.81s system 143% cpu 1:40.81 total
+Number of constraints: 675854
+Has generated 480151 points
 
 ---
-On Pixel3 (when running on root shell): 202.95s
+On Mac: 78.302s
 
-zokrates compute-witness: 91.14s
-1m31.14s real     1m04.98s user     0m09.05s system
+zokrates compute-witness: 41.044s
+33.80s user 1.14s system 85% cpu 41.044 total
 
-zokrates generate-proof: 111.81s 
-1m51.81s real     2m47.66s user     0m18.69s system
+zokrates generate-proof: 37.258s
+58.07s user 3.08s system 164% cpu 37.258 total
+
+---
+On Pixel3 (Android NDK): 165.585s
 ```

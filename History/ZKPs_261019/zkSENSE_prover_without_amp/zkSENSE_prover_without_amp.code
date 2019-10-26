@@ -29,7 +29,7 @@ def main( \
     private field[70] gyr_z_pad_zeros_diff, private field gyr_average_z_diff, private field gyr_standard_deviation_z_diff, \
     private field[70] gyr_z_pad_zeros_sec_2_diff, private field gyr_average_z_sec_2_diff, private field gyr_standard_deviation_z_sec_2_diff, \
     field gyr_number_entries, field gyr_number_entries_sec_2, \
-    field[48] scaler_stds, field[48] feature_weights, private field[48] component1, private field[48] component2, field sum_component1, field sum_component2, \
+    field[48] weight_over_stds, field svm_component, \
     field[48] pedersen_hashes \
 ) -> (field):
 
@@ -97,6 +97,8 @@ def main( \
         gyr_standard_deviation_x_sec_2_diff, gyr_standard_deviation_y_sec_2_diff, gyr_standard_deviation_z_sec_2_diff \
     ]
 
-    svm_verify(features, scaler_stds, feature_weights, component1, component2, sum_component1, sum_component2) == 11
+    field svm_reference_number = 1000000000000
+
+    svm_verify(features, weight_over_stds, svm_component, reference_number, svm_reference_number) == 11
 
     return 11
