@@ -1,5 +1,0 @@
-import "hashes/pedersen/512bit.code" as ped_hash
-import "utils/pack/pack256.code" as pack
-
-def main(private field[512] input) -> (field):
-	return pack(ped_hash(input))
